@@ -1,0 +1,25 @@
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "clark-lab",
+            "UserId": "AIDAVDYITFDVPZGDTDV4B",
+            "Arn": "arn:aws:iam::351668480234:user/clark-lab",
+            "CreateDate": "2026-06-01T02:15:01+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "corp-ci-deploy",
+            "UserId": "AIDAVDYITFDVNHYJ2ILCN",
+            "Arn": "arn:aws:iam::351668480234:user/corp-ci-deploy",
+            "CreateDate": "2026-06-01T19:57:51+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "corp-dev-user",
+            "UserId": "AIDAVDYITFDVIDJIBAKZB",
+            "Arn": "arn:aws:iam::351668480234:user/corp-dev-user",
+            "CreateDate": "2026-06-01T19:57:51+00:00"
+        }
+    ]
+}

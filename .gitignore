@@ -1,0 +1,23 @@
+# Terraform - NUNCA subas esto
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+terraform.tfvars        # credenciales reales aquí
+.terraform.tfvars
+
+# AWS credentials
+.aws/
+credentials
+*.pem
+*.key
+
+# Secrets
+*.env
+.env*
+secrets/
+
+# OS
+.DS_Store
+Thumbs.db

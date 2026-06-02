@@ -1,0 +1,9 @@
+{
+    "User": {
+        "Path": "/",
+        "UserName": "backdoor-svc",
+        "UserId": "AIDAVDYITFDVK7ITZ3MCX",
+        "Arn": "arn:aws:iam::351668480234:user/backdoor-svc",
+        "CreateDate": "2026-06-01T23:52:53+00:00"
+    }
+}

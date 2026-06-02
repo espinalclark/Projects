@@ -1,0 +1,10 @@
+{
+    "ARN": "arn:aws:secretsmanager:us-east-1:351668480234:secret:prod/corp/master-key-JLEWyD",
+    "Name": "prod/corp/master-key",
+    "VersionId": "terraform-20260601195751427500000002",
+    "SecretString": "{\"admin_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.fake\",\"db_host\":\"corp-database.us-east-1.rds.amazonaws.com\",\"password\":\"M4st3rK3y-2024!\",\"username\":\"corp-admin\"}",
+    "VersionStages": [
+        "AWSCURRENT"
+    ],
+    "CreatedDate": "2026-06-01T14:57:51.525000-05:00"
+}

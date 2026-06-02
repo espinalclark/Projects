@@ -1,0 +1,20 @@
+
+; <<>> DiG 9.20.22-1-Debian <<>> -x 13.218.182.76
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 45511
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;76.182.218.13.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+76.182.218.13.in-addr.arpa. 275	IN	PTR	ec2-13-218-182-76.compute-1.amazonaws.com.
+
+;; Query time: 0 msec
+;; SERVER: 192.168.1.1#53(192.168.1.1) (UDP)
+;; WHEN: Mon Jun 01 16:08:12 -05 2026
+;; MSG SIZE  rcvd: 110
+

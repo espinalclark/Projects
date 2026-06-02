@@ -1,0 +1,11 @@
+{
+    "Parameter": {
+        "Name": "/corp/api/key",
+        "Type": "SecureString",
+        "Value": "sk-prod-xxxxxxxxxxxxxxxxxxxx",
+        "Version": 1,
+        "LastModifiedDate": "2026-06-01T14:57:50.364000-05:00",
+        "ARN": "arn:aws:ssm:us-east-1:351668480234:parameter/corp/api/key",
+        "DataType": "text"
+    }
+}

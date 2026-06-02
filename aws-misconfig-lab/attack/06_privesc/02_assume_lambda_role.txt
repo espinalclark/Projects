@@ -1,0 +1,2 @@
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the AssumeRole operation: User: arn:aws:sts::351668480234:assumed-role/corp-ec2-instance-role/i-08d23c456f1851f76 is not authorized to perform: sts:AssumeRole on resource: arn:aws:iam::351668480234:role/corp-lambda-role

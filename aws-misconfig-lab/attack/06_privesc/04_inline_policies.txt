@@ -1,0 +1,2 @@
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the ListRolePolicies operation: User: arn:aws:sts::351668480234:assumed-role/corp-ec2-instance-role/i-08d23c456f1851f76 is not authorized to perform: iam:ListRolePolicies on resource: role corp-ec2-instance-role because no identity-based policy allows the iam:ListRolePolicies action

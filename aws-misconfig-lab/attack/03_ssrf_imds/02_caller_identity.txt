@@ -1,0 +1,5 @@
+{
+    "UserId": "AROAVDYITFDVKQCZZKAJR:i-08d23c456f1851f76",
+    "Account": "351668480234",
+    "Arn": "arn:aws:sts::351668480234:assumed-role/corp-ec2-instance-role/i-08d23c456f1851f76"
+}
