@@ -21,3 +21,9 @@ secrets/
 # OS
 .DS_Store
 Thumbs.db
+# Outputs de ataque — nunca commitear
+attack/**/*.txt
+attack/**/credentials*
+attack/**/fresh_creds*
+**/summary.md
+report/*.tex
