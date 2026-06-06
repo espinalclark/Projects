@@ -25,7 +25,6 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white)
 ![Impacket](https://img.shields.io/badge/Impacket-black?style=flat-square&logo=python&logoColor=white)
-![BloodHound](https://img.shields.io/badge/BloodHound-CC0000?style=flat-square&logoColor=white)
 
 ---
 
@@ -43,7 +42,10 @@
 ## // contact
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/espinalclark)
-[![Portafolio](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://clarkportafolio.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/espinalclark)
+[![BloodHound](https://img.shields.io/badge/BloodHound-CC0000?style=flat-square&logoColor=white)](https://clarkportafolio.vercel.app/)
+ 
+
 
 ---
 
