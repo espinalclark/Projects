@@ -1,0 +1,24 @@
+exit
+ping 10.10.10.10
+session
+start
+session
+start
+status
+help
+session list
+session_list
+session
+start
+session list
+session
+start
+session
+start
+session
+start
+session
+start
+session
+start
+exit

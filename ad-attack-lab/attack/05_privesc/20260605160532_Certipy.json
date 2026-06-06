@@ -1,0 +1,44 @@
+{
+  "Certificate Authorities": {
+    "0": {
+      "CA Name": "corp-CA",
+      "DNS Name": "WIN-FIAQQKE3IKT.corp.local",
+      "Certificate Subject": "CN=corp-CA, DC=corp, DC=local",
+      "Certificate Serial Number": "5BC0376C5192A4A940048053EF923976",
+      "Certificate Validity Start": "2026-06-03 16:17:17+00:00",
+      "Certificate Validity End": "2031-06-03 16:27:13+00:00",
+      "Web Enrollment": {
+        "http": {
+          "enabled": false
+        },
+        "https": {
+          "enabled": false,
+          "channel_binding": null
+        }
+      },
+      "User Specified SAN": "Disabled",
+      "Request Disposition": "Issue",
+      "Enforce Encryption for Requests": "Enabled",
+      "Active Policy": "CertificateAuthority_MicrosoftDefault.Policy",
+      "Permissions": {
+        "Owner": "CORP.LOCAL\\Administrators",
+        "Access Rights": {
+          "1": [
+            "CORP.LOCAL\\Administrators",
+            "CORP.LOCAL\\Domain Admins",
+            "CORP.LOCAL\\Enterprise Admins"
+          ],
+          "2": [
+            "CORP.LOCAL\\Administrators",
+            "CORP.LOCAL\\Domain Admins",
+            "CORP.LOCAL\\Enterprise Admins"
+          ],
+          "512": [
+            "CORP.LOCAL\\Authenticated Users"
+          ]
+        }
+      }
+    }
+  },
+  "Certificate Templates": "[!] Could not find any certificate templates"
+}

@@ -1,0 +1,13 @@
+# Nmap 7.99 scan initiated Fri Jun  5 04:55:43 2026 as: /usr/lib/nmap/nmap --privileged -sV -p 445,1433,3389,5985 -Pn -n -oN WS02ports.txt 10.10.10.40
+Nmap scan report for 10.10.10.40
+Host is up (0.0017s latency).
+
+PORT     STATE    SERVICE       VERSION
+445/tcp  open     microsoft-ds?
+1433/tcp filtered ms-sql-s
+3389/tcp filtered ms-wbt-server
+5985/tcp open     http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jun  5 04:55:51 2026 -- 1 IP address (1 host up) scanned in 7.51 seconds

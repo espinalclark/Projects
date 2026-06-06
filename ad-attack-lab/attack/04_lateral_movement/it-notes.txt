@@ -1,0 +1,5 @@
+﻿IT Admin Notes - Enero 2024
+
+- svc_backup password rotada: Backup2024!
+- WinRM habilitado en todos los servidores para administracion remota
+- Recordar deshabilitar SMBv1 antes de auditoria (PENDIENTE)
