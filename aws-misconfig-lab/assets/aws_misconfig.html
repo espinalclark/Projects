@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{background:#0a0c10;border:1px solid #1e2535;border-radius:12px;padding:24px 20px 20px;font-family:'Share Tech Mono',monospace}
+.title{text-align:center;font-size:13px;color:#7ee8fa;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.sub{text-align:center;font-size:10px;color:#3a5070;letter-spacing:2px;margin-bottom:24px}
+.phase{border-radius:8px;padding:10px 8px 8px;border-width:1px;border-style:solid;position:relative;min-height:72px;flex:1}
+.phase .num{font-size:9px;letter-spacing:2px;margin-bottom:4px;opacity:0.7}
+.phase .name{font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phase .detail{font-size:9px;opacity:0.65;letter-spacing:0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sep{color:#1e3040;font-size:14px;padding:0 2px;padding-top:20px;flex-shrink:0}
+.flow-row{display:flex;align-items:center;gap:0;margin-bottom:6px}
+.divider{border:none;border-top:1px solid #1e2535;margin:16px 0}
+.mods{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px}
+.mod{border-radius:6px;padding:6px 4px;border:1px solid #1e2535;background:#0d1117;text-align:center;font-size:9px;letter-spacing:1px;color:#3a5878}
+.tools-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.tool{border-radius:6px;padding:8px 10px;border:1px solid #1e3528;background:#0a1410;font-size:10px;color:#00ff41;letter-spacing:1px}
+.tool .tname{font-size:11px;margin-bottom:2px;color:#7ee8fa}
+.legend{display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:center;margin-top:8px}
+.leg{display:flex;align-items:center;gap:5px;font-size:9px;letter-spacing:1px;color:#3a5070}
+.dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+.p0{background:#0d1117;border-color:#30363d;color:#8b949e}
+.p1{background:#0d1a10;border-color:#00ff41;color:#00ff41;box-shadow:0 0 8px #00ff4115}
+.p2{background:#0d1520;border-color:#00b4d8;color:#00b4d8;box-shadow:0 0 8px #00b4d815}
+.p3{background:#150d20;border-color:#bf5af2;color:#bf5af2;box-shadow:0 0 8px #bf5af215}
+.p4{background:#20100d;border-color:#ff6b35;color:#ff6b35;box-shadow:0 0 8px #ff6b3515}
+.p5{background:#200d10;border-color:#ff375f;color:#ff375f;box-shadow:0 0 8px #ff375f15}
+.p6{background:#20180d;border-color:#ffd60a;color:#ffd60a;box-shadow:0 0 8px #ffd60a15}
+.p7{background:#0d1a10;border-color:#06d6a0;color:#06d6a0;box-shadow:0 0 8px #06d6a015}
+</style>
+<div class="wrap">
+  <div class="title">// aws-misconfig-lab — attack chain</div>
+  <div class="sub">SSRF · IMDSv1 · Lambda RCE · IAM PrivEsc · Secrets Harvest · Terraform</div>
+
+  <!-- Row 1: 00 01 02 03 -->
+  <div class="flow-row">
+    <div class="phase p0"><div class="num">// 00</div><div class="name">RECON</div><div class="detail">nmap · ffuf · S3 enum</div></div>
+    <div class="sep">──▶</div>
+    <div class="phase p1"><div class="num">// 01</div><div class="name">INITIAL ACCESS</div><div class="detail">SSRF → IMDSv1 creds</div></div>
+    <div class="sep">──▶</div>
+    <div class="phase p2"><div class="num">// 02</div><div class="name">ENUMERATION</div><div class="detail">S3 · secrets · tfstate</div></div>
+    <div class="sep">──▶</div>
+    <div class="phase p3"><div class="num">// 03</div><div class="name">SSRF + IMDS</div><div class="detail">EC2 role stolen</div></div>
+  </div>
+
+  <div style="text-align:right;font-size:11px;color:#1e3040;padding-right:6px;margin-bottom:4px">▼</div>
+
+  <!-- Row 2 reversed: 04 05(skip) 06 07 — only 3 phases now -->
+  <div class="flow-row" style="flex-direction:row-reverse">
+    <div class="phase p4"><div class="num">// 04</div><div class="name">LAMBDA RCE</div><div class="detail">code injection · shell</div></div>
+    <div class="sep" style="transform:scaleX(-1)">──▶</div>
+    <div class="phase p6"><div class="num">// 06</div><div class="name">PRIVESC</div><div class="detail">Lambda role assumed</div></div>
+    <div class="sep" style="transform:scaleX(-1)">──▶</div>
+    <div class="phase p5"><div class="num">// 07</div><div class="name">SECRETS HARVEST</div><div class="detail">SSM · SecretsManager</div></div>
+  </div>
+
+  <div style="text-align:left;font-size:11px;color:#1e3040;padding-left:6px;margin:4px 0">▼</div>
+
+  <!-- Row 3: 08 solo -->
+  <div class="flow-row">
+    <div class="phase p7"><div class="num">// 08</div><div class="name">PERSISTENCE</div><div class="detail">backdoor IAM user</div></div>
+  </div>
+
+  <hr class="divider">
+
+  <div style="font-size:9px;color:#3a5070;letter-spacing:2px;margin-bottom:8px">// TERRAFORM MODULES</div>
+  <div class="mods">
+    <div class="mod">ec2_imdsv1</div>
+    <div class="mod">s3_exposed</div>
+    <div class="mod">iam_vulnerable</div>
+    <div class="mod">lambda_injection</div>
+    <div class="mod">ecr_secrets</div>
+    <div class="mod">persistence</div>
+  </div>
+
+  <div style="font-size:9px;color:#3a5070;letter-spacing:2px;margin-bottom:8px">// TOOLS</div>
+  <div class="tools-row">
+    <div class="tool"><div class="tname">refresh_creds.py</div>SSRF → IMDS → role chain</div>
+    <div class="tool"><div class="tname">enum_roles.py</div>IAM role enumerator</div>
+    <div class="tool"><div class="tname">secret_dumper.py</div>SSM + Secrets Manager</div>
+  </div>
+
+  <hr class="divider">
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:#8b949e"></div>recon</div>
+    <div class="leg"><div class="dot" style="background:#00ff41"></div>initial access</div>
+    <div class="leg"><div class="dot" style="background:#00b4d8"></div>enumeration</div>
+    <div class="leg"><div class="dot" style="background:#bf5af2"></div>exploitation</div>
+    <div class="leg"><div class="dot" style="background:#ff6b35"></div>RCE</div>
+    <div class="leg"><div class="dot" style="background:#ffd60a"></div>privesc</div>
+    <div class="leg"><div class="dot" style="background:#ff375f"></div>secrets harvest</div>
+    <div class="leg"><div class="dot" style="background:#06d6a0"></div>persistence</div>
+  </div>
+  <div style="text-align:center;font-size:9px;color:#1e2535;letter-spacing:3px;margin-top:14px">cl4rksec · aws-misconfig-lab · 2026</div>
+</div>

@@ -1,262 +1,97 @@
-<div align="center">
+# aws-misconfig-lab
 
-```text
- █████╗ ██╗    ██╗███████╗
-██╔══██╗██║    ██║██╔════╝
-███████║██║ █╗ ██║███████╗
-██╔══██║██║███╗██║╚════██║
-██║  ██║╚███╔███╔╝███████║
-╚═╝  ╚═╝ ╚══╝╚══╝ ╚══════╝
+<p align="center">
+  <img src="assets/aws_misconfig.html" alt="aws-misconfig-lab attack chain" width="100%"/>
+</p>
 
-███╗   ███╗██╗███████╗ ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗
-████╗ ████║██║██╔════╝██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝
-██╔████╔██║██║███████╗██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
-██║╚██╔╝██║██║╚════██║██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
-██║ ╚═╝ ██║██║███████║╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
-╚═╝     ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
-```
+Laboratorio ofensivo sobre AWS con misconfiguraciones intencionales desplegadas via Terraform. Cubre una cadena de ataque completa desde reconocimiento externo hasta persistencia, incluyendo SSRF, credential theft via IMDSv1, Lambda RCE e IAM privilege escalation.
 
-# AWS Misconfiguration Lab
-
-### Cloud Pentesting · IAM Privilege Escalation · SSRF · Lambda RCE · Secrets Harvesting
-
-![AWS](https://img.shields.io/badge/AWS-Offensive%20Security-orange?style=for-the-badge)
-![Terraform](https://img.shields.io/badge/Terraform-Infrastructure-blueviolet?style=for-the-badge)
-![Security](https://img.shields.io/badge/Security-Pentesting-red?style=for-the-badge)
-
-</div>
-
----
-
-## Overview
-
-Este proyecto simula una infraestructura corporativa en AWS con múltiples configuraciones inseguras diseñadas para reproducir escenarios reales de compromiso en entornos cloud.
-
-El laboratorio permite practicar:
-
-- Enumeración AWS
-- SSRF hacia IMDSv1
-- Robo de credenciales temporales
-- IAM Privilege Escalation
-- Lambda Command Injection
-- Secrets Harvesting
-- Persistencia mediante IAM Backdoors
-- Análisis de impacto y remediación
+> Solo para uso en entornos controlados y autorizados.
 
 ---
 
 ## Attack Chain
 
-```text
-Internet
-   │
-   ▼
-SSRF Vulnerability
-   │
-   ▼
-IMDSv1 Metadata Access
-   │
-   ▼
-Temporary AWS Credentials
-   │
-   ▼
-S3 Enumeration
-   │
-   ▼
-IAM Recon
-   │
-   ▼
-AssumeRole Abuse
-   │
-   ▼
-Lambda RCE
-   │
-   ▼
-Secrets Extraction
-   │
-   ▼
-Persistence
-   │
-   ▼
-Full AWS Account Compromise
 ```
+00 Recon → 01 Initial Access → 02 Enumeration → 03 SSRF + IMDS
+         → 04 Lambda RCE → 06 PrivEsc → 07 Secrets Harvest → 08 Persistence
+```
+
+| Fase | Vector | Técnica |
+|------|--------|---------|
+| 00 Recon | External | nmap · ffuf · S3 bucket enum |
+| 01 Initial Access | SSRF | Endpoint vulnerable → IMDSv1 credential theft |
+| 02 Enumeration | AWS CLI | S3 · Lambda · Secrets · terraform.tfstate |
+| 03 SSRF + IMDS | IMDSv1 | EC2 instance role credentials confirmed |
+| 04 Lambda RCE | Code Injection | Remote code execution via Lambda function |
+| 06 PrivEsc | IAM | Lambda role assumed → elevated permissions |
+| 07 Secrets Harvest | AWS | SSM Parameter Store · Secrets Manager dump |
+| 08 Persistence | IAM | Backdoor IAM user created |
+
+> Fase 05 (Cloud Pivoting) fuera de scope: no se obtuvieron credenciales SSH al jumpbox durante el engagement.
 
 ---
 
 ## Infrastructure
 
-```text
-┌──────────────────────────┐
-│      Public EC2          │
-│  Vulnerable Web App      │
-└────────────┬─────────────┘
-             │
-             ▼
-      IMDSv1 Enabled
-             │
-             ▼
-┌──────────────────────────┐
-│       IAM Role           │
-│   Excessive Privileges   │
-└────────────┬─────────────┘
-             │
-             ▼
-┌──────────────────────────┐
-│      Lambda Function     │
-│  Command Injection RCE   │
-└────────────┬─────────────┘
-             │
-             ▼
-┌──────────────────────────┐
-│ Secrets Manager / SSM    │
-│ Sensitive Credentials    │
-└──────────────────────────┘
+Desplegada con Terraform. 7 módulos con misconfiguraciones intencionales:
+
+| Módulo | Misconfig |
+|--------|-----------|
+| `ec2_imdsv1` | IMDSv1 habilitado (sin hop limit) |
+| `s3_exposed` | Buckets con ACLs públicas y datos sensibles |
+| `iam_vulnerable` | Roles con permisos excesivos y trust policies débiles |
+| `lambda_injection` | Función con input no sanitizado → RCE |
+| `ecr_secrets` | Secrets hardcodeados en imagen ECR |
+| `cloudtrail_off` | CloudTrail deshabilitado (sin logging) |
+| `persistence` | IAM user de backdoor pre-configurado |
+
+```bash
+cd infrastructure/
+terraform init
+terraform apply
 ```
 
 ---
 
-## Findings
+## Tools
 
-| ID | Vulnerability | Severity |
-|----|---------------|----------|
-| F01 | SSRF to IMDSv1 | Critical |
-| F02 | Credential Exposure | Critical |
-| F03 | S3 Sensitive Data Exposure | High |
-| F04 | IAM Enumeration | High |
-| F05 | Privilege Escalation via AssumeRole | Critical |
-| F06 | Lambda Command Injection | Critical |
-| F07 | Secrets Manager Exposure | High |
-| F08 | IAM Persistence Backdoor | Critical |
-| F09 | CloudTrail Disabled | Medium |
+Scripts ofensivos desarrollados para el lab:
+
+| Script | Función |
+|--------|---------|
+| `refresh_creds.py` | Automatiza SSRF → IMDSv1 → assume-role → actualiza perfil AWS |
+| `enum_roles.py` | Enumera roles IAM comunes e intenta asumirlos |
+| `secret_dumper.py` | Extrae todos los secrets de SSM y Secrets Manager |
+
+```bash
+python3 tools/refresh_creds.py
+python3 tools/enum_roles.py --profile lambda-role
+python3 tools/secret_dumper.py --profile lambda-role --output dump.json
+```
 
 ---
 
-## Project Structure
+## Structure
 
-```bash
+```
 aws-misconfig-lab/
-├── terraform/
-│   ├── modules/
-│   ├── main.tf
-│   └── variables.tf
-│
-├── attack/
-│   ├── enum_roles.py
-│   ├── secret_dumper.py
-│   └── refresh_credentials.sh
-│
-├── screenshots/
-│   ├── attack/
-│   └── infrastructure/
-│
-├── report/
-│   ├── INFORME.pdf
-│   └── INFORME.tex
-│
-└── README.md
-```
-
----
-
-## Skills Demonstrated
-
-```yaml
-Cloud Security:
-  - AWS IAM
-  - EC2
-  - Lambda
-  - S3
-  - Secrets Manager
-  - SSM
-
-Offensive Security:
-  - Reconnaissance
-  - SSRF
-  - Credential Access
-  - Privilege Escalation
-  - Persistence
-
-Infrastructure:
-  - Terraform
-  - Linux
-  - Bash
-  - Python
-
-Reporting:
-  - Technical Documentation
-  - Risk Assessment
-  - Executive Reporting
-```
-
----
-
-## Sample Enumeration
-
-```bash
-aws sts get-caller-identity
-
-aws iam list-roles
-
-aws s3 ls
-
-aws lambda list-functions
-
-aws secretsmanager list-secrets
-
-aws ssm describe-parameters
+├── attack/          # Evidencia por fase (outputs, summaries)
+├── infrastructure/  # Terraform modules
+├── report/          # INFORME.pdf
+├── screenshots/     # Evidencia visual (attack + infraestructura)
+└── tools/           # Scripts ofensivos Python
 ```
 
 ---
 
 ## Report
 
-```bash
-report/INFORME.pdf
-```
-
-Incluye:
-
-- Arquitectura del laboratorio
-- Cadena completa de ataque
-- Evidencias técnicas
-- Hallazgos clasificados por severidad
-- Remediaciones
-- Análisis de impacto
+Informe técnico completo disponible en [`report/INFORME.pdf`](report/INFORME.pdf).
 
 ---
 
-## Disclaimer
+## Author
 
-```text
-This project was built exclusively for educational and
-authorized security testing purposes.
-
-All vulnerabilities are intentionally deployed inside a
-controlled AWS environment owned by the author.
-
-Do not attempt these techniques against systems without
-explicit authorization.
-```
-
----
-
-<div align="center">
-
-```text
-root@aws-lab:~# whoami
-
-cloud-pentester
-
-root@aws-lab:~# mission_status
-
-[✓] Initial Access
-[✓] Credential Access
-[✓] Privilege Escalation
-[✓] Persistence
-[✓] Documentation
-
-STATUS: COMPLETE
-```
-
-</div>
-
+**Clark Espinal** — [@cl4rksec](https://github.com/espinalclark)  
+Junior Pentester | eJPT | ICCA
