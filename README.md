@@ -1,34 +1,53 @@
-# 🛡️ Security Projects — espinalclark
+# espinalclark / projects
 
-> Repositorio de proyectos de seguridad ofensiva y defensiva en entornos de laboratorio controlados.
+```
+~/security/projects $
+```
 
----
-
-## 📁 Proyectos
-
-| Proyecto | Descripción | Stack | Status |
-|----------|-------------|-------|--------|
-| [aws-misconfig-lab](./aws-misconfig-lab/) | Cadena de ataque completa en AWS: S3, IAM privesc, SSRF, Lambda injection, ECR secrets | AWS · Terraform · Python | 🟢 Active |
+> offensive & defensive security research — controlled lab environments
 
 ---
 
-## ⚠️ Disclaimer
+## // projects
 
-Todos los proyectos en este repositorio son realizados en **entornos de laboratorio controlados y de propiedad personal**.
-Ningún proyecto documenta, promueve ni facilita ataques a sistemas reales o de terceros.
-El contenido es únicamente con fines de aprendizaje profesional en ciberseguridad.
-
----
-
-## 🧰 Stack general
-
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazonaws&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat&logo=terraform&logoColor=white)
-![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=flat&logo=kalilinux&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+| project | description | stack | status |
+|---------|-------------|-------|--------|
+| [aws-misconfig-lab](./aws-misconfig-lab/) | complete attack chain on AWS: S3 enumeration, IAM privesc, SSRF → IMDSv1 credential theft, Lambda RCE, ECR hardcoded secrets, persistence via backdoor IAM user | `AWS` `Terraform` `Python` | `active` |
+| [ad-attack-lab](./ad-attack-lab/) | full Active Directory attack chain: LLMNR poisoning, AS-REP roasting, Kerberoasting, pivoting via Ligolo-ng, ACL abuse, ADCS ESC1, DCSync → domain compromise | `Active Directory` `PowerShell` `Python` | `active` |
 
 ---
 
-## 📬 Contacto
+## // stack
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/TU_PERFIL)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white)
+![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=flat-square&logo=kalilinux&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white)
+![Impacket](https://img.shields.io/badge/Impacket-black?style=flat-square&logo=python&logoColor=white)
+![BloodHound](https://img.shields.io/badge/BloodHound-CC0000?style=flat-square&logoColor=white)
+
+---
+
+## // disclaimer
+
+```
+! all projects are executed in personal, controlled lab environments.
+  no content documents, promotes or facilitates attacks against real
+  or third-party systems.
+  purpose: professional learning in offensive security.
+```
+
+---
+
+## // contact
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/espinalclark)
+[![Portafolio](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://clarkportafolio.vercel.app/)
+
+---
+
+```
+Clark Espinal — @cl4rksec
+Junior Pentester | eJPT | ICCA
+```
