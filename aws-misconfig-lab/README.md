@@ -1,8 +1,6 @@
 # aws-misconfig-lab
 
-<p align="center">
-  <img src="assets/aws_misconfig.html" alt="aws-misconfig-lab attack chain" width="100%"/>
-</p>
+<img src="assets/aws.png" alt="aws-misconfig-lab attack chain" width="100%"/>
 
 Laboratorio ofensivo sobre AWS con misconfiguraciones intencionales desplegadas via Terraform. Cubre una cadena de ataque completa desde reconocimiento externo hasta persistencia, incluyendo SSRF, credential theft via IMDSv1, Lambda RCE e IAM privilege escalation.
 
