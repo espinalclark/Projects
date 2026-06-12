@@ -1,118 +1,118 @@
-# Puyu IoT GPS Platform — External Pentest Report
+# Cliente GPS IoT — Informe de Pentesting Externo
 
-![Type](https://img.shields.io/badge/type-black--box-black?style=flat-square)
+![Tipo](https://img.shields.io/badge/tipo-black--box-black?style=flat-square)
 ![Hosts](https://img.shields.io/badge/hosts-3-blue?style=flat-square)
-![Findings](https://img.shields.io/badge/findings-19-critical?style=flat-square&color=C0392B)
-![Methodology](https://img.shields.io/badge/methodology-OWASP%20%2F%20PTES-orange?style=flat-square)
-![Status](https://img.shields.io/badge/status-completed-green?style=flat-square)
+![Hallazgos](https://img.shields.io/badge/hallazgos-19-critical?style=flat-square&color=C0392B)
+![Metodología](https://img.shields.io/badge/metodolog%C3%ADa-OWASP%20%2F%20PTES-orange?style=flat-square)
+![Estado](https://img.shields.io/badge/estado-completado-green?style=flat-square)
 
-Black-box external penetration test against a production GPS IoT platform running across three servers. Assessment performed without prior credentials, from public internet, following OWASP Testing Guide v4.2 and PTES methodology.
+Prueba de penetración externa de caja negra contra una plataforma GPS IoT en producción distribuida en tres servidores. Evaluación realizada sin credenciales previas, desde internet público, siguiendo OWASP Testing Guide v4.2 y PTES.
 
-> All data that could identify the client has been redacted. This report is published for portfolio purposes with client authorization.
+> Todos los datos que pudieran identificar al cliente han sido redactados. Este informe se publica con fines de portafolio con autorización del cliente.
 
 ---
 
-## Scope
+## Alcance
 
-| Host | Services |
-|------|----------|
+| Host | Servicios |
+|------|-----------|
 | `HOST-A` | Jenkins CI/CD |
 | `HOST-B` | Grafana · Laravel · phpMyAdmin · MySQL |
 | `HOST-C` | Wiki.js · Spring Boot · Kong API Gateway · MySQL · SSH |
 
 ---
 
-## Executive Summary
+## Resumen Ejecutivo
 
-19 findings across three hosts. HOST-C carries the highest risk: a publicly accessible Wiki.js instance without authentication exposes the complete infrastructure architecture, including an SSH access script with `root` credentials. Combined with no brute-force protection on SSH, this represents a direct path to full server compromise.
+19 hallazgos distribuidos en tres hosts. HOST-C concentra el mayor riesgo: una instancia de Wiki.js accesible sin autenticación expone la arquitectura completa de la infraestructura, incluyendo un script de acceso SSH como `root`. Combinado con la ausencia de protección anti-bruteforce en SSH, existe un vector directo hacia el compromiso total del servidor.
 
-| Severity | Count |
-|----------|-------|
-| 🔴 Critical | 3 |
-| 🟠 High | 5 |
-| 🟡 Medium | 5 |
-| 🟢 Low | 4 |
-| ⚪ Info | 2 |
-
----
-
-## Top Findings
-
-### 🔴 F-C-01 — Wiki.js public without authentication · CVSS 9.1
-Internal documentation accessible from the internet with no auth. Exposed full microservices architecture, SSH access scripts, service configuration (Kafka, Redis, PostgreSQL, MongoDB), external API tokens and internal team details.
-
-### 🔴 F-C-02 — `tunnels.sh` with root SSH exposed · CVSS 9.8
-The wiki publicly documented a shell script used by the dev team to connect to the production server — including the `root` user, public IP and full internal port map. Combined with F-C-08 (no brute-force protection), the only barrier to full compromise is root password strength.
-
-### 🔴 F-B-01 — Grafana default credentials `admin:admin` · CVSS 9.8
-Immediate admin access to the monitoring panel. PostgreSQL datasources with internal connection strings exposed, including production GPS database configuration.
-
-### 🟠 F-C-08 — SSH root without brute-force protection · CVSS 8.1
-Password authentication enabled for `root`. Over 2,000 consecutive login attempts with `hydra` triggered zero defensive response — no `fail2ban`, no rate limiting, no IP blocking.
-
-### 🟠 F-B-03 — Laravel Debug Mode active in production · CVSS 7.5
-`APP_DEBUG=true` on production. HTTP errors returned full stack traces with absolute server paths, dependency versions and database connection configuration.
+| Severidad | Cantidad |
+|-----------|----------|
+| 🔴 Crítico | 3 |
+| 🟠 Alto    | 5 |
+| 🟡 Medio   | 5 |
+| 🟢 Bajo    | 4 |
+| ⚪ Info    | 2 |
 
 ---
 
-## Methodology
+## Hallazgos Principales
+
+### 🔴 F-C-01 — Wiki.js pública sin autenticación · CVSS 9.1
+Documentación técnica interna accesible desde internet sin ningún control de acceso. Expone arquitectura completa de microservicios, scripts de acceso SSH, configuración de servicios (Kafka, Redis, PostgreSQL, MongoDB), tokens de APIs externas y datos del equipo interno.
+
+### 🔴 F-C-02 — `tunnels.sh` con acceso root SSH expuesto · CVSS 9.8
+La wiki documenta públicamente el script usado por el equipo para conectarse al servidor de producción, incluyendo el usuario `root`, la IP pública y el mapa completo de puertos internos. Combinado con F-C-08, el único factor que previene el compromiso total es la fortaleza de la contraseña de root.
+
+### 🔴 F-B-01 — Grafana con credenciales por defecto `admin:admin` · CVSS 9.8
+Acceso administrativo inmediato al panel de monitoreo. Datasources de PostgreSQL con cadenas de conexión a bases de datos internas expuestas, incluyendo configuración de la base de datos GPS de producción.
+
+### 🟠 F-C-08 — SSH root sin protección anti-bruteforce · CVSS 8.1
+Autenticación por contraseña habilitada para `root`. Más de 2.000 intentos consecutivos con `hydra` sin respuesta defensiva del servidor — sin `fail2ban`, sin rate limiting, sin bloqueo de IP.
+
+### 🟠 F-B-03 — Laravel Debug Mode activo en producción · CVSS 7.5
+`APP_DEBUG=true` en producción. Los errores HTTP devuelven stacktraces completos con rutas absolutas del servidor, versiones de dependencias y configuración de conexión a base de datos.
+
+---
+
+## Metodología
 
 ```
-Reconnaissance → Enumeration → Vulnerability Analysis → Exploitation → Documentation
-     nmap            curl           nuclei              hydra           LaTeX report
-   whatweb       feroxbuster      manual review        mysql-client
+Reconocimiento → Enumeración → Análisis de vulns → Explotación → Documentación
+     nmap            curl           nuclei             hydra        Informe LaTeX
+   whatweb       feroxbuster     revisión manual    mysql-client
 ```
 
-Phases followed OWASP Testing Guide v4.2 and PTES. Assessment type: black-box, external, no prior credentials.
+Fases siguiendo OWASP Testing Guide v4.2 y PTES. Tipo: caja negra, externo, sin credenciales previas.
 
 ---
 
-## Tools
+## Herramientas
 
-| Tool | Purpose |
-|------|---------|
-| `nmap` | Port scanning and service detection |
-| `whatweb` | Web technology fingerprinting |
-| `feroxbuster` | Directory enumeration |
-| `nuclei` | Automated vulnerability detection |
-| `curl` | HTTP header and endpoint inspection |
-| `hydra` | SSH brute-force rate limiting test |
-| `mysql-client` | Exposed MySQL access verification |
-
----
-
-## MITRE ATT&CK Coverage
-
-| Tactic | Technique | Finding |
-|--------|-----------|---------|
-| Reconnaissance | T1595.001 — Active Scanning | All hosts |
-| Reconnaissance | T1596.005 — SSL Certificate enumeration | F-C-11 |
-| Reconnaissance | T1213 — Wiki public recon | F-C-01 |
-| Initial Access | T1078.001 — Default credentials | F-B-01 |
-| Credential Access | T1110.001 — SSH brute force | F-C-08 |
-| Credential Access | T1552.001 — Credentials in wiki | F-C-02 |
-| Discovery | T1046 — Network service scanning | F-C-10 |
-| Discovery | T1083 — Directory listing | F-B-04 |
-| Collection | T1530 — DB access via Grafana | F-B-02 |
-| Defense Evasion | T1082 — Stack traces with system info | F-C-04 |
+| Herramienta | Uso |
+|-------------|-----|
+| `nmap` | Escaneo de puertos y detección de servicios |
+| `whatweb` | Fingerprinting de tecnologías web |
+| `feroxbuster` | Enumeración de directorios |
+| `nuclei` | Detección automatizada de vulnerabilidades |
+| `curl` | Inspección de cabeceras y endpoints HTTP |
+| `hydra` | Prueba de rate limiting en SSH |
+| `mysql-client` | Verificación de acceso a MySQL expuesto |
 
 ---
 
-## Report
+## MITRE ATT&CK
 
-| File | Description |
-|------|-------------|
-| [`Report/INFORME_portfolio.pdf`](Report/INFORME_portfolio.pdf) | Full pentest report (client data redacted) |
-| [`Report/INFORME_portfolio.tex`](Report/INFORME_portfolio.tex) | LaTeX source |
-| [`assets/`](assets/) | Evidence screenshots (sensitive data redacted) |
+| Táctica | Técnica | Hallazgo |
+|---------|---------|----------|
+| Reconnaissance | T1595.001 — Escaneo activo de puertos | Todos |
+| Reconnaissance | T1596.005 — Enumeración via certificado SSL | F-C-11 |
+| Reconnaissance | T1213 — Reconocimiento via wiki pública | F-C-01 |
+| Initial Access | T1078.001 — Credenciales por defecto | F-B-01 |
+| Credential Access | T1110.001 — Bruteforce SSH | F-C-08 |
+| Credential Access | T1552.001 — Credenciales en texto claro en wiki | F-C-02 |
+| Discovery | T1046 — Escaneo de servicios expuestos | F-C-10 |
+| Discovery | T1083 — Directory listing en phpMyAdmin | F-B-04 |
+| Collection | T1530 — Acceso a datasources DB via Grafana | F-B-02 |
+| Defense Evasion | T1082 — Stacktraces con información del sistema | F-C-04 |
 
 ---
 
-## Author
+## Archivos
+
+| Archivo | Descripción |
+|---------|-------------|
+| [`Report/INFORME_portfolio.pdf`](Report/INFORME.pdf) | Informe completo (datos del cliente redactados) |
+| [`Report/INFORME_portfolio.tex`](Report/INFORME.tex) | Fuente LaTeX |
+| [`assets/`](assets/) | Capturas de evidencia (datos sensibles redactados) |
+
+---
+
+## Autor
 
 **Clark Espinal** — Penetration Tester  
 [clarkportafolio.vercel.app](https://clarkportafolio.vercel.app) · [linkedin.com/in/espinalclark](https://linkedin.com/in/espinalclark) · [github.com/espinalclark](https://github.com/espinalclark)
 
 ---
 
-> ⚠️ This report documents an authorized external penetration test. All techniques described must not be applied against infrastructure without explicit written authorization from the owner.
+> ⚠️ Este informe documenta una prueba de penetración externa autorizada. Las técnicas documentadas no deben aplicarse sobre infraestructura sin autorización explícita y escrita del propietario.
