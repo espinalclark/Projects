@@ -8,7 +8,7 @@
 
 Prueba de penetración externa de caja negra contra una plataforma GPS IoT en producción distribuida en tres servidores. Evaluación realizada sin credenciales previas, desde internet público, siguiendo OWASP Testing Guide v4.2 y PTES.
 
-> Todos los datos que pudieran identificar al cliente han sido redactados. Este informe se publica con fines de portafolio con autorización del cliente.
+> Todos los datos que pudieran identificar al cliente han sido redactados.
 
 ---
 
@@ -102,8 +102,8 @@ Fases siguiendo OWASP Testing Guide v4.2 y PTES. Tipo: caja negra, externo, sin 
 
 | Archivo | Descripción |
 |---------|-------------|
-| [`Report/INFORME_portfolio.pdf`](Report/INFORME.pdf) | Informe completo (datos del cliente redactados) |
-| [`Report/INFORME_portfolio.tex`](Report/INFORME.tex) | Fuente LaTeX |
+| [`Report/INFORME.pdf`](Report/INFORME.pdf) | Informe completo (datos del cliente redactados) |
+| [`Report/INFORME.tex`](Report/INFORME.tex) | Fuente LaTeX |
 
 ---
 
@@ -114,4 +114,3 @@ Fases siguiendo OWASP Testing Guide v4.2 y PTES. Tipo: caja negra, externo, sin 
 
 ---
 
-> ⚠️ Este informe documenta una prueba de penetración externa autorizada. Las técnicas documentadas no deben aplicarse sobre infraestructura sin autorización explícita y escrita del propietario.
