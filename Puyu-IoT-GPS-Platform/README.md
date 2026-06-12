@@ -1,4 +1,4 @@
-# Cliente GPS IoT — Informe de Pentesting Externo
+# Puyu IoT GPS Platform — Informe de Pentesting Externo
 
 ![Tipo](https://img.shields.io/badge/tipo-black--box-black?style=flat-square)
 ![Hosts](https://img.shields.io/badge/hosts-3-blue?style=flat-square)
