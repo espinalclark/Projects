@@ -104,7 +104,6 @@ Fases siguiendo OWASP Testing Guide v4.2 y PTES. Tipo: caja negra, externo, sin 
 |---------|-------------|
 | [`Report/INFORME_portfolio.pdf`](Report/INFORME.pdf) | Informe completo (datos del cliente redactados) |
 | [`Report/INFORME_portfolio.tex`](Report/INFORME.tex) | Fuente LaTeX |
-| [`assets/`](assets/) | Capturas de evidencia (datos sensibles redactados) |
 
 ---
 
